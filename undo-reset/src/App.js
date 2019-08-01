@@ -17,18 +17,25 @@ const FriendBox = ({ gender, ...props }) => (
 
 function App() {
   const { onSubmit, friends, undo } = useApp()
+
   const [name, setName] = useState('')
   const [gender, setGender] = useState('Male')
   const onNameChange = (e) => setName(e.target.value)
   const onGenderChange = (e) => setGender(e.target.value)
+
+  const resetValues = () => {
+    setName('')
+    setGender('Male')
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>
-          Reset Abilities
+          Add or Remove List of Friends
         </h1>
       </header>
-      <form className="form" onSubmit={onSubmit({name, gender})}>
+      <form className="form" onSubmit={onSubmit({name, gender}, resetValues)}>
         <div>
           <input
             onChange={onNameChange}

@@ -28,11 +28,13 @@ const reducer = (state, action) => {
 const useApp = () => {
     //define the useReducer implementation inside our custom hook so that we acquire the API to send signals to update our local state:
     const [state, dispatch] = useReducer(reducer, initialState)
-    const onSubmit = (friend) => (e) => {
+
+    const onSubmit = (friend, resetValues) => (e) => {
         e.preventDefault()
             // console.log(friend)
         if (!friend.name) return
         dispatch({ type: 'add-friend', friend })
+        resetValues()
     }
     const undo = () => {
         dispatch({ type: 'undo' })
