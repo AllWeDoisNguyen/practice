@@ -84,3 +84,47 @@ button:active {
     border: 1px solid #a1a1a1;
     color: #fff;
 }
+
+.teal-border {
+    border: 1px solid #467b8f;
+}
+
+.hotpink-border {
+    border: 1px solid #c1247d;
+}
+
+.boxes {
+    margin: 10px 0;
+    padding: 3px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+}
+
+.box {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.box-name {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.box.gender-container {
+    position: relative;
+}
+
+.box img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}

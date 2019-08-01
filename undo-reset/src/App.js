@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
+import cx from 'classnames';
 import './App.css';
-import useApp from './useApp'
+import useApp from './useApp';
+import female from './images/female.jpg'
+import male from './images/male.jpg'
+
+const FriendBox = ({ gender, ...props }) => (
+  <div
+    className={cx('box', {
+      'teal-border': gender === "Male",
+      'hotpink-border': gender === 'Female',
+    })}
+    {...props}
+  />
+)
 
 function App() {
-  const { onSubmit } = useApp()
+  const { onSubmit, friends } = useApp()
   const [name, setName] = useState('')
   const [gender, setGender] = useState('Male')
   const onNameChange = (e) => setName(e.target.value)
@@ -36,6 +49,17 @@ function App() {
           <button type="submit">Add</button>
         </div>
       </form>
+      <div className="boxes">
+      {friends.map(({name, gender}, index) => (
+        <FriendBox key={`friend_${index}`} gender={gender}>
+          <div className="box-name">Name: {name}</div>
+          <div className="gender-container">
+            <img src={gender === 'Female' ? female : male} alt=""/>
+          </div>
+        </FriendBox>
+
+      ))}
+      </div>
     </div>
   );
 }
