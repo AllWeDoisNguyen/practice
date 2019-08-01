@@ -8,3 +8,28 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.theme-light,
+.theme-dark {
+    box-sizing: border-box;
+    transition: all 0.15s ease-out;
+    padding: 12px;
+    min-height: 100vh;
+    text-align: center;
+    /* min-height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}
+
+.theme-light {
+    color: #282c34;
+    background: #fff;
+}
+
+.theme-dark {
+    color: #fff;
+    background-color: #282c34;
+}

@@ -128,3 +128,12 @@ button:active {
     width: 100%;
     height: 100%;
 }
+
+.undo-actions {
+    display: flex;
+    align-items: center;
+}
+
+.undo-actions>div {
+    margin: auto 3px;
+}

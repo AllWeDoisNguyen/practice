@@ -16,7 +16,7 @@ const FriendBox = ({ gender, ...props }) => (
 )
 
 function App() {
-  const { onSubmit, friends, undo } = useApp()
+  const { onSubmit, friends, undo, theme, onThemeChange, reset } = useApp()
 
   const [name, setName] = useState('')
   const [gender, setGender] = useState('Male')
@@ -29,13 +29,20 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Add or Remove List of Friends
-        </h1>
-      </header>
-      <form className="form" onSubmit={onSubmit({name, gender}, resetValues)}>
+    <div className={cx({
+      'theme-light': theme === 'light',
+      'theme-dark': theme === 'dark',
+    })}>
+      <div>
+        <h3>What theme would you like to display?</h3>
+        <div>
+          <select onChange={onThemeChange} name="theme" value={theme}>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
+      <form className="form" onSubmit={onSubmit({ name, gender }, resetValues)}>
         <div>
           <input
             onChange={onNameChange}
@@ -56,23 +63,31 @@ function App() {
           <button type="submit">Add</button>
         </div>
       </form>
-      <div className="undo-actions">
-        <div>
-          <button type="button" onClick={undo}>
-          Undo
-          </button>
+      <div>
+        <h3>Made a mistake?</h3>
+        <div className="undo-actions">
+          <div>
+            <button type="button" onClick={undo}>
+              Undo
+            </button>
+          </div>
+          <div>
+            <button type="button" onClick={reset}>
+              Reset
+            </button>
+          </div>
         </div>
       </div>
       <div className="boxes">
-      {friends.map(({name, gender}, index) => (
-        <FriendBox key={`friend_${index}`} gender={gender}>
-          <div className="box-name">Name: {name}</div>
-          <div className="gender-container">
-            <img src={gender === 'Female' ? female : male} alt=""/>
-          </div>
-        </FriendBox>
+        {friends.map(({ name, gender }, index) => (
+          <FriendBox key={`friend_${index}`} gender={gender}>
+            <div className="box-name">Name: {name}</div>
+            <div className="gender-container">
+              <img src={gender === 'Female' ? female : male} alt="" />
+            </div>
+          </FriendBox>
 
-      ))}
+        ))}
       </div>
     </div>
   );

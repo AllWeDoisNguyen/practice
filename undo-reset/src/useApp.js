@@ -55,13 +55,24 @@ const useApp = () => {
         dispatch({ type: 'add-friend', friend })
         resetValues()
     }
+
     const undo = () => {
         dispatch({ type: 'undo' })
+    }
+
+    const reset = () => {
+        dispatch({ type: 'reset' })
+    }
+
+    const onThemeChange = (e) => {
+        dispatch({ type: 'set-theme', theme: e.target.value })
     }
     return {
         ...state,
         onSubmit,
         undo,
+        onThemeChange,
+        reset
     }
 }
 
