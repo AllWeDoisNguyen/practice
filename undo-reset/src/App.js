@@ -16,7 +16,7 @@ const FriendBox = ({ gender, ...props }) => (
 )
 
 function App() {
-  const { onSubmit, friends } = useApp()
+  const { onSubmit, friends, undo } = useApp()
   const [name, setName] = useState('')
   const [gender, setGender] = useState('Male')
   const onNameChange = (e) => setName(e.target.value)
@@ -49,6 +49,13 @@ function App() {
           <button type="submit">Add</button>
         </div>
       </form>
+      <div className="undo-actions">
+        <div>
+          <button type="button" onClick={undo}>
+          Undo
+          </button>
+        </div>
+      </div>
       <div className="boxes">
       {friends.map(({name, gender}, index) => (
         <FriendBox key={`friend_${index}`} gender={gender}>
